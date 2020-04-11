@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "thingsboard/tb-postgres:2.4.3",
+    "Update": "false"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "9090"
+    },
+    {
+      "ContainerPort": "1883"
+    },
+    {
+      "ContainerPort": "5683"
+    }
+  ],
+  "Logging": "/var/log/thingsboard"
+}
