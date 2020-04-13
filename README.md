@@ -31,8 +31,8 @@ The `deploy.py` CLI deploys the ThingsBoard application to AWS Elastic Beanstalk
 
 ## Dependencies
 
-* `Python 3.3+`
-* `boto3`
+* Python 3.3+
+* Boto3
 
 ## Prerequisites
 
