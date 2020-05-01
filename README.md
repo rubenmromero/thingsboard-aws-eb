@@ -128,20 +128,16 @@ Here are some common customizations that you might want to add to an environment
           DBSubnets: <subnet_2a_id>,<subnet_2b_id>,...    # Subnet IDs for RDS instance
           AssociatePublicIpAddress: true                  # Review this option in https://amzn.to/2Vhgt5B
 
-* To configure HTTPS in a `LoadBalanced` type environment for a custom domain using an ACM issued certificate, add the following configuration block to the `env.yaml.production` file:
+* To configure SSL in a `LoadBalanced` type environment for a custom domain using an ACM issued certificate, add the following configuration block to the `env.yaml.production` file:
 
         aws:elb:listener:443:
-          ListenerProtocol: HTTPS
+          ListenerProtocol: SSL
           InstancePort: '80'
-          InstanceProtocol: HTTP
+          InstanceProtocol: TCP
           ListenerEnabled: true
           SSLCertificateId: <acm_certificate_arn>
 
-    Then uncomment the `https-redirect-docker-sc` container command block in `.ebextensions/server-updates.config` file:
-
-        https-redirect-docker-sc:
-          command: cp .ebextensions/nginx/elasticbeanstalk-nginx-docker-proxy.conf /etc/nginx/sites-available/
-          test: '[ "$(/opt/elasticbeanstalk/bin/get-config environment -k CONFIG_PROFILE)" == "production" ]'
+    Then modify the `InstancePort` setting belonging to the `aws:elb:listener:80` namespace replacing the port `80` by `8080`.
 
 * To configure a SSH key pair to securely log into the EC2 instance/s belonging to an environment, add the following setting to the existing `aws:autoscaling:launchconfiguration` namespace in any of the `env.yaml.<config_profile>` files:
 
