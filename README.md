@@ -137,7 +137,7 @@ Here are some common customizations that you might want to add to an environment
           ListenerEnabled: true
           SSLCertificateId: <acm_certificate_arn>
 
-    Then modify the `InstancePort` setting belonging to the `aws:elb:listener:80` namespace replacing the port `80` by `8080`.
+    Then modify the `InstancePort` setting belonging to the `aws:elb:listener:80` namespace replacing the port `80` by `81`.
 
 * To configure a SSH key pair to securely log into the EC2 instance/s belonging to an environment, add the following setting to the existing `aws:autoscaling:launchconfiguration` namespace in any of the `env.yaml.<config_profile>` files:
 
